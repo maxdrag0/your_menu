@@ -1,3 +1,7 @@
+const validId = (valor) => {
+  return valor>0;
+};
+
 const validName = (name) => {
   return name != null;
 }
@@ -10,4 +14,4 @@ const validDescription = (description) => {
   return description != null;
 }
 
-export default { validName, validPrice, validDescription };
+export default { validId, validName, validPrice, validDescription };

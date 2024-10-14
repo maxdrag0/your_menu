@@ -1,21 +1,15 @@
 import { DataTypes as DT, Model } from "sequelize";
 import connection from "../connection/connection.js";
 
-class Product extends Model {}
+class Order extends Model {}
 
-Product.init({
-    name: {
-        type: DT.STRING(50),
+Order.init({
+    status: {
+        type: DT.STRING(20),
         allowNull: false,
-        validate: {
-            notEmpty: true,
-        }
+        defaultValue: 'pending'
     },
-    description: {
-        type: DT.STRING(100),
-        allowNull: true,
-    },
-    price: {
+    total: {
         type: DT.DOUBLE,
         allowNull: false,
         validate: {
@@ -25,8 +19,9 @@ Product.init({
     }
 }, {
     sequelize: connection,
-    modelName: "Product",
-    timestamps: false,
+    modelName: "Order",
+    timestamps: true,
 });
 
-export default Product;
+
+export default Order;

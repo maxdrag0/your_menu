@@ -4,12 +4,10 @@ import ProductController from "../controller/productController.js";
 const productRoutes = Router();
 const productController = new ProductController();
 
-productRoutes.post("/", productController.createSonda);
+productRoutes.post("/", productController.createProduct);
 
-productRoutes.get("/", productController.getAllSondas);
+productRoutes.get("/", productController.getAllProducts);
 
-productRoutes.get("/estadisticas", productController.getEstadisticas);
-
-productRoutes.get("/:id", productController.getAllSondaById);
+productRoutes.get("/:id", productController.getProductById);
 
 export default productRoutes;

@@ -7,14 +7,14 @@ class ProductApi {
         this.factory = Factory.factory();
     }
 
-    createProduct = async (id, name, price, description ) => {
+    createProduct = async (name, price, description ) => {
         try {
             if (
                 validaciones.validName(name) &&
                 validaciones.validPrice(price) &&
                 validaciones.validDescription(description)
             ) {
-                const pruduct = new Product(id, name, price, description);
+                const pruduct = new Product(name, price, description);
                 const data = await this.factory.ProductMemoryDAO.createProduct(pruduct);
                 return data;
             } else{
@@ -25,7 +25,7 @@ class ProductApi {
         }
     }
 
-    getAllProduct = async () => {
+    getAllProducts = async () => {
         try {
             const products = await this.factory.ProductMemoryDAO.getAllProducts();
             return products;
@@ -37,7 +37,7 @@ class ProductApi {
     getProductById = (id) => {
         try {
             if (
-                validaciones.sondaValida(id)
+                validaciones.validId(id)
             ) {
                 const product = this.factory.ProductMemoryDAO.getProductById(id);
                 return product;

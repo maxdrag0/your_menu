@@ -5,29 +5,29 @@ class ProductController {
         this.productApi = new ProductApi();
     }
 
-    createSonda = async (req, res) => {
+    createProduct = async (req, res) => {
         try {
-            const { id, temperatura } = req.body;
-            const product = await this.productApi.createSonda(id, temperatura);
+            const { name, price, description } = req.body;
+            const product = await this.productApi.createProduct(name, price, description);
             res.status(200).json({ data: product });
         } catch (error) {
             res.status(400).send({ error: error.message });
         }
     }
 
-    getAllSondas = async (req, res) => {
+    getAllProducts = async (req, res) => {
         try {
-            const products = await this.productApi.getAllSondas();
+            const products = await this.productApi.getAllProducts();
             res.status(200).json({ data: products });
         } catch (error) {
             res.status(500).send({ error: error.message });
         }
     }
 
-    getAllSondaById = async (req, res) => {
+    getProductById = async (req, res) => {
         try {
             const id = parseInt(req.params.id, 10);
-            const product = await this.productApi.getAllSondaById(id);
+            const product = await this.productApi.getProductById(id);
             if (product.length === 0) {
                 throw new Error("Número de producto incorrecto");
             }
@@ -37,14 +37,6 @@ class ProductController {
         }
     }
 
-    getEstadisticas = async (req, res) => {
-        try {
-            const stats = await this.productApi.getEstadisticas();
-            res.status(200).json({ estadisticas: stats });
-        } catch (error) {
-            res.status(500).send({ error: error.message });
-        }
-    }
 }
 
 export default ProductController;
